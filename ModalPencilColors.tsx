@@ -37,7 +37,7 @@ export default function ModalPencilColors({ setPenColor, showSettingsPencil, set
 
             {/* Botão para Fechar o Modal */}
             <TouchableOpacity onPress={() => setShowSettingsPencil(false)} style={styles.closeButton}>
-              <Text>Fechar</Text>
+            <Text style={styles.closeButtonText}>Fechar</Text>
             </TouchableOpacity>
           </View>
         </View>

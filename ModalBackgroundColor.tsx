@@ -25,10 +25,11 @@ export default function ModalBackgroundColor({ setBackgroundColor, visibleModal,
                      />
                   ))}
                </View>
-            </View>
+
             <TouchableOpacity onPress={() => setVisibleModal(false)} style={styles.closeButton}>
-              <Text>Fechar</Text>
+              <Text style={styles.closeButtonText}>Fechar</Text>
             </TouchableOpacity>
+            </View>
          </View>
       </Modal>
    );

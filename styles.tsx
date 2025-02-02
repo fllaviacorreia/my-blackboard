@@ -11,8 +11,16 @@ const styles = StyleSheet.create({
       width: "100%",
       flexDirection: "row",
       justifyContent: "space-between",
-      padding: 10,
-      backgroundColor: "#ccc",
+      padding: 5,
+      backgroundColor: "#cfcfcf",
+    },
+    toolbarButton: {
+      width: 60,
+      height: 40,
+      borderRadius: 5,
+      backgroundColor: "#bdbdbd",
+      justifyContent: "center",
+      alignItems: "center",
     },
     color: {
       width: 40,
@@ -36,12 +44,16 @@ const styles = StyleSheet.create({
     },
     modalTitle: {
       fontSize: 18,
+      width: "100%",
+      textAlign: "center",
       fontWeight: "bold",
-      marginBottom: 10,
+      marginBottom: 20,
     },
     modalText: {
       fontSize: 16,
       marginTop: 10,
+      width: 300,
+      textAlign: "center",
     },
     colorPicker: {
       flexDirection: "row",
@@ -52,19 +64,25 @@ const styles = StyleSheet.create({
     colorOption: {
       width: 30,
       height: 30,
-      borderRadius: 20,
+      borderRadius: 10,
+      borderWidth: 1,
       marginHorizontal: 5,
     },
     slider: {
       width: 300,
-      height: 40,
+      height: 60,
     },
     closeButton: {
-      marginTop: 15,
+      marginTop: 30,
       padding: 10,
-      backgroundColor: "grey",
+      backgroundColor: "#ccc",
       borderRadius: 10,
+      width: 120,
     },
+    closeButtonText: {
+      width: "100%", 
+      textAlign: "center"
+    }
   });
 
   export default styles;

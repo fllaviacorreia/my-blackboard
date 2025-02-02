@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { View, StyleSheet, GestureResponderEvent } from "react-native";
+import { View, StyleSheet, GestureResponderEvent, TouchableOpacity } from "react-native";
 import Svg, { Path } from "react-native-svg";
 import Entypo from '@expo/vector-icons/Entypo';
 import { StatusBar } from "expo-status-bar";
 import { DrawPath, sizeIcons } from "./defaultValues";
 
-import ModalPencilColors  from "./ModalPencilColors";
+import ModalPencilColors from "./ModalPencilColors";
 import ModalBackgroundColor from "./ModalBackgroundColor";
 
 import styles from "./styles";
@@ -38,16 +38,16 @@ const App: React.FC = () => {
   const handleTouchEnd = () => {
     setPaths((prev) => [
       ...prev,
-      { 
-        path: currentPath, 
-        color: isEraserActive ? backgroundColor : penColor, 
-        width: isEraserActive ? 20 : strokeWidth, 
+      {
+        path: currentPath,
+        color: isEraserActive ? backgroundColor : penColor,
+        width: isEraserActive ? 20 : strokeWidth,
         colorFrom: isEraserActive ? "eraser" : "pencil"
       }
     ]);
     setCurrentPath("");
   };
-  
+
 
   const clearCanvas = () => {
     setPaths([]);
@@ -64,7 +64,7 @@ const App: React.FC = () => {
       setColorEraser("green");
     }
     setIsEraserActive(!isEraserActive);
-  };  
+  };
 
   return (
     <View style={styles.container}>
@@ -77,66 +77,74 @@ const App: React.FC = () => {
         >
           <Svg style={StyleSheet.absoluteFill}>
             {paths.map((p, index) => (
-              <Path 
-                key={index} 
-                d={p.path} 
-                stroke={p.colorFrom === "eraser" ? backgroundColor : p.color} 
-                strokeWidth={p.width} 
-                fill="none" 
+              <Path
+                key={index}
+                d={p.path}
+                stroke={p.colorFrom === "eraser" ? backgroundColor : p.color}
+                strokeWidth={p.width}
+                fill="none"
               />
             ))}
-            <Path 
-              d={currentPath} 
-              stroke={isEraserActive ? backgroundColor : penColor} 
-              strokeWidth={strokeWidth} 
-              fill="none" 
+            <Path
+              d={currentPath}
+              stroke={isEraserActive ? backgroundColor : penColor}
+              strokeWidth={strokeWidth}
+              fill="none"
             />
           </Svg>
         </View>
       </View>
       <View style={styles.toolbar} >
-        <Entypo 
-          name="back-in-time" 
-          size={sizeIcons} 
-          color="black" 
-          onPress={undoLastStroke} 
-        />
-        <Entypo 
-          name="pencil" 
-          size={sizeIcons} 
-          color={penColor} 
-          onPress={() => setShowSettingsPencil(true)} 
-        />
-        <Entypo 
-          name="blackboard" 
-          size={sizeIcons} 
-          color={backgroundColor} 
-          onPress={() => setShowSettingsBackground(true)} 
-        />
-        <Entypo 
-          name="eraser" 
-          size={sizeIcons} 
-          color={colorEraser} 
-          onPress={toggleEraser} 
-        />
-        <Entypo 
-          name="trash" 
-          size={sizeIcons} 
-          color="black" 
-          onPress={clearCanvas} 
-        />
+        <TouchableOpacity onPress={undoLastStroke} style={styles.toolbarButton}>
+          <Entypo
+            name="back-in-time"
+            size={sizeIcons}
+            color="black"
+          />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => setShowSettingsPencil(true)} style={styles.toolbarButton}>
+          <Entypo
+            name="pencil"
+            size={sizeIcons}
+            color={penColor}
+          />
+
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => setShowSettingsBackground(true)} style={styles.toolbarButton}>
+          <Entypo
+            name="blackboard"
+            size={sizeIcons}
+            color={backgroundColor}
+            onPress={() => setShowSettingsBackground(true)}
+          />
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={toggleEraser} style={styles.toolbarButton}>
+          <Entypo
+            name="eraser"
+            size={sizeIcons}
+            color={colorEraser}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={clearCanvas} style={styles.toolbarButton}>
+          <Entypo
+            name="trash"
+            size={sizeIcons}
+            color="black"
+          />
+        </TouchableOpacity>
       </View>
-      <ModalPencilColors 
-        setPenColor={setPenColor} 
-        showSettingsPencil={showSettingsPencil} 
-        setShowSettingsPencil={setShowSettingsPencil} 
-        strokeWidth={strokeWidth} 
-        setStrokeWidth={setStrokeWidth} 
+      <ModalPencilColors
+        setPenColor={setPenColor}
+        showSettingsPencil={showSettingsPencil}
+        setShowSettingsPencil={setShowSettingsPencil}
+        strokeWidth={strokeWidth}
+        setStrokeWidth={setStrokeWidth}
       />
-      <ModalBackgroundColor 
-        setBackgroundColor={setBackgroundColor} 
-        visibleModal={showSettingsBackground} 
-        setVisibleModal={setShowSettingsBackground} 
+      <ModalBackgroundColor
+        setBackgroundColor={setBackgroundColor}
+        visibleModal={showSettingsBackground}
+        setVisibleModal={setShowSettingsBackground}
       />
       <StatusBar style={backgroundColor === "black" ? "light" : "dark"} />
     </View>
