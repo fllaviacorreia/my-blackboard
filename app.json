@@ -1,16 +1,16 @@
 {
   "expo": {
-    "name": "my-blackboard",
+    "name": "My Blackboard",
     "slug": "my-blackboard",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
+    "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "splash": {
       "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#000"
     },
     "ios": {
       "supportsTablet": true
@@ -18,11 +18,17 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      }
+        "backgroundColor": "#000"
+      },
+      "package": "com.fllaviacorreia.myblackboard"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "b35eea41-6a5e-4af2-acb5-0c25f5142738"
+      }
     }
   }
 }
