@@ -8,6 +8,7 @@ interface DrawPath {
     color: string;
     width: number;
     colorFrom: "eraser" | "pencil";
+    isDot: boolean;
 }
 
 interface DrawingContextType {
@@ -70,7 +71,7 @@ export const DrawingProvider: React.FC<{ children: ReactNode }> = ({ children })
     const [showModalPencilSettings, setShowModalPencilSettings] = useState<boolean>(false);
     const [showModalBackgroundSettings, setShowModalBackgroundSettings] = useState<boolean>(false);
 
-    
+
     const saveDrawing = async () => {
         try {
             const drawingData = JSON.stringify(paths);
@@ -85,21 +86,19 @@ export const DrawingProvider: React.FC<{ children: ReactNode }> = ({ children })
 
             await AsyncStorage.setItem("@my-blackboard-savedDrawing", drawingData);
             await AsyncStorage.setItem("@my-blackboard-saveSettings", settingsData);
-
-            console.log("Desenho salvo com sucesso!");
         } catch (error) {
             console.error("Erro ao salvar o desenho:", error);
         }
     };
 
-   
+
     const loadDrawing = async () => {
         try {
             const savedData = await AsyncStorage.getItem("@my-blackboard-savedDrawing");
             const savedSettings = await AsyncStorage.getItem("@my-blackboard-saveSettings");
+
             if (savedData) {
                 setPaths(JSON.parse(savedData));
-                console.log("Desenho carregado com sucesso!");
             }
 
             if (savedSettings) {
@@ -109,19 +108,18 @@ export const DrawingProvider: React.FC<{ children: ReactNode }> = ({ children })
                 setBackgroundColor(settings.backgroundColor);
                 setIsEraserActive(settings.isEraserActive);
                 setColorEraser(settings.colorEraser);
-                console.log("Configurações carregadas com sucesso!");
             }
         } catch (error) {
             console.error("Erro ao carregar o desenho:", error);
         }
     };
 
-    
+
     useEffect(() => {
         loadDrawing();
     }, []);
 
-    
+
     const handleTouchStart = (e: GestureResponderEvent) => {
         const { locationX, locationY } = e.nativeEvent;
         setCurrentPath(`M ${locationX} ${locationY}`);
@@ -138,12 +136,14 @@ export const DrawingProvider: React.FC<{ children: ReactNode }> = ({ children })
             {
                 path: currentPath,
                 color: isEraserActive ? backgroundColor : penColor,
-                width: isEraserActive ? 20 : strokeWidth,
+                width: strokeWidth,
                 colorFrom: isEraserActive ? "eraser" : "pencil",
-            },
+                isDot: !currentPath.includes("L"), // Indica que é um traço normal
+            }
         ]);
-        saveDrawing();
+
         setCurrentPath("");
+        saveDrawing();
     };
 
     const clearCanvas = () => {
@@ -153,6 +153,7 @@ export const DrawingProvider: React.FC<{ children: ReactNode }> = ({ children })
 
     const undoLastStroke = () => {
         setPaths((prev) => prev.slice(0, -1));
+        saveDrawing();
     };
 
     const toggleEraser = () => {

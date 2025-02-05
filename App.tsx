@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { View, StyleSheet, GestureResponderEvent, TouchableOpacity } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { DrawPath } from "./defaultValues";
@@ -9,7 +9,7 @@ import ModalBackgroundColor from "./ModalBackgroundColor";
 import styles from "./styles";
 import Toobar from "./Toobar";
 import Canvas from "./Canvas";
-import { DrawingProvider } from "./Context";
+import { DrawingContext, DrawingProvider } from "./Context";
 
 const App: React.FC = () => {
 
