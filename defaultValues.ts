@@ -8,4 +8,6 @@ export interface DrawPath {
 
 export const colorsPencil = [ "black", "brown", "orange",  "yellow", "red", "green", "blue", "white" ];
 export const colorsBackground = ["black", "gray", "#2C5F2D", "white"];
+
+export const colorBaseIcons = "black";
 export const sizeIcons = 30;

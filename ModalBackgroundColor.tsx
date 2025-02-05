@@ -1,15 +1,19 @@
 import { Modal, Text, TouchableOpacity, View } from "react-native";
 import styles from "./styles";
 import { colorsBackground } from "./defaultValues";
+import { DrawingContext } from "./Context";
+import { useContext } from "react";
 
-type ModalProps = {
-    setBackgroundColor: (color: string) => void;
-    visibleModal: boolean;
-    setVisibleModal: (show: boolean) => void;
-}
-export default function ModalBackgroundColor({ setBackgroundColor, visibleModal, setVisibleModal }: ModalProps) {
+
+export default function ModalBackgroundColor() {
+   const { 
+      showModalBackgroundSettings, 
+      setShowModalBackgroundSettings, 
+      setBackgroundColor 
+   } = useContext(DrawingContext);
+   
    return (
-      <Modal visible={visibleModal} transparent animationType="slide">
+      <Modal visible={showModalBackgroundSettings} transparent animationType="slide">
          <View style={styles.modalContainer}>
             <View style={styles.modalContent}>
                <Text style={styles.modalTitle}>Selecione a Cor de Fundo</Text>
@@ -19,14 +23,14 @@ export default function ModalBackgroundColor({ setBackgroundColor, visibleModal,
                         key={color}
                         onPress={() => {
                            setBackgroundColor(color);
-                           setVisibleModal(false);
+                           setShowModalBackgroundSettings(false);
                         }}
                         style={[styles.colorOption, { backgroundColor: color }]}
                      />
                   ))}
                </View>
 
-            <TouchableOpacity onPress={() => setVisibleModal(false)} style={styles.closeButton}>
+            <TouchableOpacity onPress={() => setShowModalBackgroundSettings(false)} style={styles.closeButton}>
               <Text style={styles.closeButtonText}>Fechar</Text>
             </TouchableOpacity>
             </View>
