@@ -1,7 +1,9 @@
-import React, { createContext, useState, ReactNode, useEffect } from "react";
-import { GestureResponderEvent } from "react-native";
+import React, { createContext, useState, ReactNode, useEffect, useRef } from "react";
+import { GestureResponderEvent, View } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { colorBaseIcons } from "./defaultValues";
+import { captureRef } from "react-native-view-shot";
+import * as MediaLibrary from "expo-media-library";
 
 interface DrawPath {
     path: string;
@@ -32,6 +34,8 @@ interface DrawingContextType {
     handleTouchEnd: () => void;
     clearCanvas: () => void;
     undoLastStroke: () => void;
+      saveToGallery: () => Promise<void>;
+  canvasRef: React.RefObject<View | null>;
 }
 
 export const DrawingContext = createContext<DrawingContextType>({
@@ -55,6 +59,8 @@ export const DrawingContext = createContext<DrawingContextType>({
     handleTouchEnd: () => { },
     clearCanvas: () => { },
     undoLastStroke: () => { },
+    saveToGallery: async () => { },
+    canvasRef: React.createRef<View>(),
 });
 
 export const DrawingProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
@@ -70,6 +76,42 @@ export const DrawingProvider: React.FC<{ children: ReactNode }> = ({ children })
 
     const [showModalPencilSettings, setShowModalPencilSettings] = useState<boolean>(false);
     const [showModalBackgroundSettings, setShowModalBackgroundSettings] = useState<boolean>(false);
+
+    const canvasRef = useRef<View | null>(null);
+
+  const saveToGallery = async () => {
+    try {
+      // 1) Permissão
+      const  status  = await MediaLibrary.requestPermissionsAsync();
+      if (!status.granted) {
+        console.warn("Permissão para acessar a biblioteca de mídia não concedida.");
+        return;
+      }
+
+      // 2) Capturar a view do canvas
+      if (!canvasRef.current) {
+        console.warn("Canvas ref não está pronto.");
+        return;
+      }
+
+      const uri = await captureRef(canvasRef, {
+        format: "png",
+        quality: 1,
+      });
+
+      // 3) Salvar na galeria (opcional: criar álbum “Blackboard”)
+      const asset = await MediaLibrary.createAssetAsync(uri);
+      try {
+        await MediaLibrary.createAlbumAsync("MyBlackboard", asset, false);
+      } catch {
+        // Se o álbum já existir, apenas segue
+      }
+
+      console.log("Imagem salva:", uri);
+    } catch (error) {
+      console.error("Erro ao salvar a imagem:", error);
+    }
+  };
 
 
     const saveDrawing = async () => {
@@ -184,6 +226,8 @@ export const DrawingProvider: React.FC<{ children: ReactNode }> = ({ children })
                 handleTouchEnd,
                 clearCanvas,
                 undoLastStroke,
+        saveToGallery,
+        canvasRef
             }}
         >
             {children}

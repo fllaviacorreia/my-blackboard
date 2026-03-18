@@ -15,11 +15,13 @@ export default function Canvas() {
         handleTouchStart,
         handleTouchMove,
         handleTouchEnd,
+        canvasRef
     } = useContext(DrawingContext);
 
     return (
         <View style={[styles.canvas, { backgroundColor: backgroundColor }]}>
             <View
+                ref={canvasRef}
                 style={styles.canvas}
                 onTouchStart={handleTouchStart}
                 onTouchMove={handleTouchMove}

@@ -10,25 +10,52 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#000"
+      "backgroundColor": "#000000"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.fcfreelas.myblackboard"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/icon.png",
-        "backgroundColor": "#000"
+        "backgroundColor": "#000000"
       },
-      "package": "com.fllaviacorreia.myblackboard"
+      "navigationBar": {
+        "visible": "immersive"
+      },
+      "predictiveBackGestureEnabled": false,
+      "package": "com.fcfreelas.myblackboard",
+      "permissions": [
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.WRITE_EXTERNAL_STORAGE",
+        "android.permission.READ_MEDIA_VISUAL_USER_SELECTED",
+        "android.permission.ACCESS_MEDIA_LOCATION",
+        "android.permission.READ_MEDIA_AUDIO",
+        "android.permission.READ_MEDIA_IMAGES"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "extra": {
       "eas": {
-        "projectId": "b35eea41-6a5e-4af2-acb5-0c25f5142738"
+        "projectId": "581e98bf-0296-430d-8f8b-b5453a1771ff"
       }
-    }
+    },
+    "plugins": [
+      [
+        "expo-media-library",
+        {
+          "photosPermission": "Allow $(PRODUCT_NAME) to access your photos.",
+          "savePhotosPermission": "Allow $(PRODUCT_NAME) to save photos.",
+          "isAccessMediaLocationEnabled": true,
+          "granularPermissions": [
+            "audio",
+            "photo"
+          ]
+        }
+      ]
+    ]
   }
 }

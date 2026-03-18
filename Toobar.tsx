@@ -15,10 +15,14 @@ export default function Toobar(){
         setShowModalBackgroundSettings,
         clearCanvas,
         toggleEraser,
+        saveToGallery
     } = useContext(DrawingContext);
 
     return(
         <View style={styles.toolbar} >
+          <TouchableOpacity onPress={saveToGallery} style={styles.toolbarButton}>
+        <Entypo name="camera" size={sizeIcons} color={colorBaseIcons} />
+      </TouchableOpacity>
         <TouchableOpacity onPress={undoLastStroke} style={styles.toolbarButton}>
           <Entypo
             name="back-in-time"
