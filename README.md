@@ -2,6 +2,21 @@
 
 Uma lousa digital simples e intuitiva para desenhar, fazer anotações e salvar suas criações diretamente na galeria do dispositivo.
 
+## Sumário
+
+- [Sobre](#sobre)
+- [Funcionalidades](#funcionalidades)
+- [Tecnologias](#tecnologias)
+- [Como executar](#como-executar)
+  - [Pré-requisitos](#pré-requisitos)
+  - [Instalação](#instalação)
+- [Política de uso](#política-de-uso)
+- [Política de privacidade](#política-de-privacidade)
+  - [Dados armazenados](#dados-armazenados)
+  - [Acesso à galeria](#acesso-à-galeria)
+  - [Compartilhamento e serviços de terceiros](#compartilhamento-e-serviços-de-terceiros)
+  - [Segurança e alterações](#segurança-e-alterações)
+
 ## Sobre
 
 O **My Blackboard** é um aplicativo mobile desenvolvido com Expo e React Native. Ele oferece uma tela de desenho em modo retrato, com ferramentas para personalizar o lápis e o fundo da lousa. Os desenhos e as preferências do usuário são armazenados localmente, permitindo continuar de onde parou ao abrir o aplicativo novamente.
