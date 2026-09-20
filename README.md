@@ -49,3 +49,41 @@ npm run ios
 ```
 
 > Para salvar desenhos, autorize o acesso à biblioteca de fotos quando solicitado pelo aplicativo.
+
+## Política de uso
+
+Ao utilizar o My Blackboard, o usuário concorda em:
+
+- usar o aplicativo de maneira lícita e responsável;
+- não utilizar o aplicativo para criar, armazenar ou compartilhar conteúdo ilegal, ofensivo ou que viole direitos de terceiros;
+- respeitar direitos autorais, marcas, privacidade e demais direitos aplicáveis aos conteúdos criados ou utilizados;
+- assumir a responsabilidade pelos desenhos e arquivos produzidos no aplicativo.
+
+O aplicativo é fornecido no estado em que se encontra. Embora sejam adotados cuidados para oferecer uma experiência estável, não há garantia de funcionamento ininterrupto, ausência de falhas ou recuperação de desenhos perdidos. Funcionalidades e condições de uso podem ser atualizadas em versões futuras.
+
+## Política de privacidade
+
+O My Blackboard foi desenvolvido para funcionar localmente no dispositivo. Atualmente, o aplicativo não exige cadastro, não possui servidor próprio e não envia desenhos ou dados pessoais para o desenvolvedor.
+
+### Dados armazenados
+
+Os seguintes dados podem ser mantidos no armazenamento local do dispositivo:
+
+- traços que compõem o desenho;
+- cor e espessura do lápis;
+- cor de fundo;
+- estado das ferramentas do aplicativo.
+
+Esses dados são usados somente para restaurar o desenho e as preferências ao abrir o aplicativo novamente. O usuário pode apagar o desenho pela opção de limpeza do próprio aplicativo ou remover todos os dados ao desinstalá-lo ou limpar seus dados nas configurações do dispositivo.
+
+### Acesso à galeria
+
+O acesso à biblioteca de mídia é solicitado apenas quando necessário para salvar uma cópia do desenho em formato PNG. A permissão pode ser negada ou revogada a qualquer momento nas configurações do sistema operacional; nesse caso, a exportação para a galeria poderá não funcionar.
+
+### Compartilhamento e serviços de terceiros
+
+O aplicativo não vende nem compartilha deliberadamente dados pessoais com terceiros. A distribuição e a execução do aplicativo podem depender de serviços da plataforma, do sistema operacional ou do Expo, sujeitos às respectivas políticas de privacidade.
+
+### Segurança e alterações
+
+Os dados locais estão sujeitos aos mecanismos de segurança do próprio dispositivo. Esta política poderá ser atualizada quando novas funcionalidades forem adicionadas ou houver mudanças na forma de tratamento dos dados. A versão mais recente ficará disponível neste README.
